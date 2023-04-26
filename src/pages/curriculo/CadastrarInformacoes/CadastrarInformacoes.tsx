@@ -43,7 +43,6 @@ const CadastrarInformacoes: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {" "}
         {({ errors, touched }) => (
           <Form className={styles.form}>
             <h2 className={styles.title}>Informações Pessoais</h2>
@@ -75,7 +74,9 @@ const CadastrarInformacoes: React.FC = () => {
                 type="text"
                 id="nome"
                 name="nome"
-                className={styles.input}
+                className={`${styles.input} ${
+                  touched.nome && errors.nome && styles.error
+                }`}
               />
               <ErrorMessage
                 name="nome"
@@ -92,7 +93,9 @@ const CadastrarInformacoes: React.FC = () => {
                 type="text"
                 name="cargo"
                 id="cargo"
-                className={styles.input}
+                className={`${styles.input} ${
+                  touched.cargo && errors.cargo && styles.error
+                }`}
               />
               <ErrorMessage
                 name="cargo"
@@ -110,7 +113,9 @@ const CadastrarInformacoes: React.FC = () => {
                 as="textarea"
                 name="resumo"
                 id="resumo"
-                className={styles.textarea}
+                className={`${styles.textarea} ${
+                  touched.resumo && errors.resumo && styles.error
+                }`}
               />
               <ErrorMessage
                 name="resumo"
