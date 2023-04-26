@@ -18,16 +18,18 @@ const Sidebar = () => {
         <h3>Curriculo</h3>
         <ul>
           <li>
-            <NavLink to="/curriculo/cadastro/resumo">Cadastrar Resumo</NavLink>
-          </li>
-          <li>
-            <NavLink to="/curriculo/cadastro/expeeriencia-academia">
-              Cadastrar Experiencia Academica
+            <NavLink to="/curriculo/informacoes/cadastro">
+              Cadastrar Informações
             </NavLink>
           </li>
           <li>
-            <NavLink to="./curriculo/cadastro/experiencia-profissional">
-              Cadastrar Experiencia Profissional
+            <NavLink to="/curriculo/experiencia/cadastro">
+              Cadastrar Experiencia
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="./curriculo/experiencia/lista">
+              Lista de Experiencias
             </NavLink>
           </li>
         </ul>
