@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+h3 {
+  padding-bottom: 25px;
+}
+
 .navigation ul {
   list-style: none;
   padding: 0;
@@ -16,7 +20,7 @@
 }
 
 .navigation li:last-child {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
 .navigation a {
