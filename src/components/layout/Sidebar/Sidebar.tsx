@@ -24,7 +24,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/curriculo/experiencia/cadastro">
-              Cadastrar Experiencia
+              Cadastrar Experiência
             </NavLink>
           </li>
           <li>
@@ -39,7 +39,7 @@ const Sidebar = () => {
             <NavLink to="/portfolio/cadastro">Cadastrar Portfolio</NavLink>
           </li>
           <li>
-            <NavLink to="/portfolio/listagem">Listagem de Portfolios</NavLink>
+            <NavLink to="/portfolio/lista">Lista de Portfolios</NavLink>
           </li>
         </ul>
       </nav>
