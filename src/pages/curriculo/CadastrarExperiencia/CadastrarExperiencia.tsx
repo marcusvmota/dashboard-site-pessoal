@@ -6,6 +6,7 @@ import { Formik, Form } from "formik"
 import styles from "./CadastrarExperiencia.module.css"
 import Input from "../../../components/forms/Input/Input"
 import TextArea from "../../../components/forms/textarea/TextArea"
+import Select from "../../../components/forms/Select"
 
 interface FormValues {
   titulo: string
@@ -74,6 +75,17 @@ const CadastrarExperiencia: React.FC = () => {
               name="anoFim"
               errors={errors.anoFim}
               touched={touched.anoFim}
+            />
+
+            <Select
+              label="Tipo"
+              name="tipo"
+              options={[
+                { value: "profissional", label: "Profissional" },
+                { value: "academico", label: "Acadêmico" },
+              ]}
+              errors={errors.tipo}
+              touched={touched.tipo}
             />
 
             <TextArea
