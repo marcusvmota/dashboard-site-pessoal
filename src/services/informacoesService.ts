@@ -14,3 +14,8 @@ export async function createInformacoes(
   const response = await api.put<Informacoes>("/informacoes/1", informacoes)
   return response.data
 }
+
+export async function getInformacoes(): Promise<Informacoes> {
+  const response = await api.get<Informacoes>("/informacoes/1")
+  return response.data
+}

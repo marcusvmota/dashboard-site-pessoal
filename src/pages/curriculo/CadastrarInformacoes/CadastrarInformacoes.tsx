@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
@@ -9,6 +9,7 @@ import TextArea from "../../../components/forms/textarea/TextArea"
 import {
   Informacoes,
   createInformacoes,
+  getInformacoes,
 } from "../../../services/informacoesService"
 import InformacoesCard from "./InformacoesCard/InformacoesCard"
 
@@ -29,6 +30,19 @@ const CadastrarInformacoes: React.FC = () => {
     cargo: Yup.string().required("Campo obrigatório"),
     resumo: Yup.string().required("Campo obrigatório"),
   })
+
+  const fecthInformacoes = async () => {
+    try {
+      const informacao = await getInformacoes()
+      setInformacoes(informacao)
+    } catch (error) {
+      console.error("Erro ao buscar informações", error)
+    }
+  }
+
+  useEffect(() => {
+    fecthInformacoes()
+  }, [])
 
   const onSubmit = async (
     values: Informacoes,
