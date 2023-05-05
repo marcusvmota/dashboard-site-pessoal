@@ -8,7 +8,7 @@ import Input from "../../../components/forms/Input/Input"
 import TextArea from "../../../components/forms/textarea/TextArea"
 import {
   Informacoes,
-  createInformacoes,
+  updateInformacoes,
   getInformacoes,
 } from "../../../services/informacoesService"
 import InformacoesCard from "./InformacoesCard/InformacoesCard"
@@ -49,7 +49,7 @@ const CadastrarInformacoes: React.FC = () => {
     { resetForm }: { resetForm: () => void }
   ) => {
     try {
-      await createInformacoes(values)
+      await updateInformacoes(values)
       setInformacoes(values)
       console.log(values)
       // resetForm()
@@ -60,10 +60,22 @@ const CadastrarInformacoes: React.FC = () => {
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      await updateInformacoes(initialValues)
+      setInformacoes(initialValues)
+      alert("Informações deletadas com sucesso!")
+    } catch (error) {
+      console.error("Erro ao deletar informações", error)
+      alert("Ocorreu um erro ao deletar informações. Tente novamente.")
+    }
+  }
+
   return (
     <div className={styles.formWrapper}>
       <Formik
-        initialValues={initialValues}
+        initialValues={informacoes}
+        enableReinitialize={true}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
@@ -105,7 +117,22 @@ const CadastrarInformacoes: React.FC = () => {
           </Form>
         )}
       </Formik>
-      <InformacoesCard informacoes={informacoes} />
+
+      {informacoes &&
+        Object.entries(informacoes).some(
+          ([key, value]) => key !== "id" && value.trim() !== ""
+        ) && (
+          <div className={styles.cardContainer}>
+            <InformacoesCard informacoes={informacoes} />
+            <button
+              type="button"
+              onClick={handleDelete}
+              className={`${styles.button} ${styles.deleteButton}`}
+            >
+              Deletar
+            </button>
+          </div>
+        )}
     </div>
   )
 }
