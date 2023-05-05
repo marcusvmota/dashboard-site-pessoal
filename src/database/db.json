@@ -8,6 +8,15 @@
       "resumo": "updateInformacoes"
     }
   ],
-  "experiencias": [],
+  "experiencias": [
+    {
+      "id": 1,
+      "titulo": "Desenvolvedor de Software",
+      "descricao": "",
+      "tipo": "profissional",
+      "anoInicio": "2023",
+      "anoFim": "2023"
+    }
+  ],
   "portfolio": []
 }

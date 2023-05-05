@@ -7,17 +7,18 @@ import styles from "./CadastrarExperiencia.module.css"
 import Input from "../../../components/forms/Input/Input"
 import TextArea from "../../../components/forms/textarea/TextArea"
 import Select from "../../../components/forms/Select"
-
-interface FormValues {
-  titulo: string
-  descricao: string
-  tipo: string
-  anoInicio: string
-  anoFim: string
-}
+import {
+  Experiencia,
+  createOrUpdateExperiencia,
+} from "../../../services/experienciaService"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const CadastrarExperiencia: React.FC = () => {
-  const initialValues: FormValues = {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const experiencia = location.state as Experiencia
+  const initialValues: Experiencia = {
+    id: 0,
     titulo: "",
     descricao: "",
     tipo: "",
@@ -27,7 +28,7 @@ const CadastrarExperiencia: React.FC = () => {
 
   const validationSchema = Yup.object().shape({
     titulo: Yup.string().required("Campo obrigatório"),
-    descricao: Yup.string().required("Campo obrigatório"),
+    descricao: Yup.string(),
     tipo: Yup.string().required("Campo obrigatório"),
     anoInicio: Yup.number()
       .required("Campo obrigatório")
@@ -37,19 +38,26 @@ const CadastrarExperiencia: React.FC = () => {
       .typeError("Um número é obrigatório"),
   })
 
-  const onSubmit = (
-    values: FormValues,
+  const onSubmit = async (
+    values: Experiencia,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log(values)
-    resetForm()
-    alert("Formulário enviado com sucesso!")
+    try {
+      await createOrUpdateExperiencia(values)
+      console.log(values)
+      resetForm()
+      navigate("/curriculo/experiencia/lista")
+      alert("Formulário enviado com sucesso!")
+    } catch (error) {
+      console.log(error)
+      alert("Erro ao enviar formulário")
+    }
   }
 
   return (
     <div className={styles.formWrapper}>
       <Formik
-        initialValues={initialValues}
+        initialValues={experiencia || initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
@@ -78,7 +86,7 @@ const CadastrarExperiencia: React.FC = () => {
             />
 
             <Select
-              label="Tipo"
+              label="Tipo de Experiência"
               name="tipo"
               options={[
                 { value: "profissional", label: "Profissional" },
@@ -96,7 +104,7 @@ const CadastrarExperiencia: React.FC = () => {
             />
 
             <button className={styles.button} type="submit">
-              Cadastrar
+              Salvar
             </button>
           </Form>
         )}
