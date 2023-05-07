@@ -6,38 +6,48 @@ import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import Input from "../../../components/forms/Input"
 
-interface FormValues {
-  link: string
-  image: string
-  title: string
-}
-
-const initialValues: FormValues = {
-  link: "",
-  image: "",
-  title: "",
-}
-
-const validationSchema = Yup.object().shape({
-  link: Yup.string().required("Campo obrigatório"),
-  image: Yup.string().required("Campo obrigatório"),
-  title: Yup.string().required("Campo obrigatório"),
-})
+import {
+  Portfolio,
+  createOrUpdatePortfolio,
+} from "../../../services/portfolioService"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const CadastrarPortfolio: React.FC = () => {
-  const onSubmit = (
-    values: FormValues,
+  const navigate = useNavigate()
+  const location = useLocation()
+  const portfolio = location.state as Portfolio
+  const initialValues: Portfolio = {
+    id: 0,
+    link: "",
+    image: "",
+    title: "",
+  }
+
+  const validationSchema = Yup.object().shape({
+    link: Yup.string().required("Campo obrigatório"),
+    image: Yup.string().required("Campo obrigatório"),
+    title: Yup.string().required("Campo obrigatório"),
+  })
+
+  const onSubmit = async (
+    values: Portfolio,
     { resetForm }: { resetForm: () => void }
   ) => {
-    //logica de envio para o backend
-    console.log(values)
-    resetForm()
-    alert("Formulário enviado com sucesso!")
+    try {
+      await createOrUpdatePortfolio(values)
+      console.log(values)
+      resetForm()
+      navigate("/portfolio/lista")
+      alert("Formulário enviado com sucesso!")
+    } catch (error) {
+      console.log(error)
+      alert("Erro ao enviar formulário")
+    }
   }
   return (
     <div className={styles.formWrapper}>
       <Formik
-        initialValues={initialValues}
+        initialValues={portfolio || initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >

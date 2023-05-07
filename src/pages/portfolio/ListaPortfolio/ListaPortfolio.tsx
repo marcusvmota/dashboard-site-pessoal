@@ -2,37 +2,45 @@ import React, { useState } from "react"
 
 import styles from "./ListaPortfolio.module.css"
 
-interface Portfolio {
-  title: string
-  image: string
-  link: string
-}
+import {
+  getPortfolio,
+  updatePortfolio,
+  Portfolio,
+  deletePortfolio,
+} from "../../../services/portfolioService"
+import { useNavigate } from "react-router-dom"
 
 const ListaPortfolio: React.FC = () => {
-  const [portfolio, setPortfolio] = useState<Portfolio[]>([
-    {
-      link: "https://academy.comeialabs.com.br/",
-      image: "https://picsum.photos/300/200?random=1",
-      title: "Portfolio 1",
-    },
+  const navigate = useNavigate()
+  const [portfolio, setPortfolio] = React.useState<Portfolio[]>([])
 
-    {
-      link: "https://academy.comeialabs.com.br/",
-      image: "https://picsum.photos/300/200?random=2",
-      title: "Portfolio 2",
-    },
+  const fetchPortfolio = async () => {
+    try {
+      const portfolio = await getPortfolio()
+      setPortfolio(portfolio)
+    } catch (error) {
+      console.log("Erro ao buscar portfolio: ", error)
+    }
+  }
 
-    {
-      link: "https://academy.comeialabs.com.br/",
-      image: "https://picsum.photos/300/200?random=3",
-      title: "Portfolio 3",
-    },
-  ])
+  React.useEffect(() => {
+    fetchPortfolio()
+  }, [])
+  const handleEdit = (portfolio: Portfolio) => {
+    navigate("/portfolio/cadastro", { state: portfolio })
+  }
+  const handleDelete = async (id: number) => {
+    try {
+      await deletePortfolio(id)
+      fetchPortfolio()
 
-  const handleEdit = (index: number) => {}
-
-  const handleDelete = (index: number) => {}
-
+      alert("Portfolio deletado com sucesso!")
+    } catch (error) {
+      console.log("Erro ao deletar portfolio: ", error)
+      alert("Erro ao deletar portfolio")
+    }
+    //Logica para deletar
+  }
   return (
     <table className={styles.table}>
       <thead>
@@ -61,8 +69,10 @@ const ListaPortfolio: React.FC = () => {
               </a>{" "}
             </td>
             <td>
-              <button onClick={() => handleEdit(index)}>Editar</button>
-              <button onClick={() => handleDelete(index)}>Excluir</button>
+              <button onClick={() => handleEdit(itemPortfolio)}>Editar</button>
+              <button onClick={() => handleDelete(itemPortfolio.id)}>
+                Excluir
+              </button>
             </td>
           </tr>
         ))}
