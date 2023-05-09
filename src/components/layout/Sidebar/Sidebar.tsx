@@ -42,6 +42,13 @@ const Sidebar = () => {
             <NavLink to="/portfolio/lista">Lista de Portfolios</NavLink>
           </li>
         </ul>
+        <ul>
+          <li>
+            <NavLink to="/login">
+              <h3>Logout</h3>
+            </NavLink>
+          </li>
+        </ul>
       </nav>
     </div>
   )

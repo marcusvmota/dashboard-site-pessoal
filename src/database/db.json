@@ -16,13 +16,29 @@
       "tipo": "profissional",
       "anoInicio": "2023",
       "anoFim": "2023"
+    },
+    {
+      "id": 2,
+      "titulo": "Desenvolvedor de Software",
+      "descricao": "",
+      "tipo": "profissional",
+      "anoInicio": "2222",
+      "anoFim": "2222"
+    },
+    {
+      "id": 3,
+      "titulo": "Desenvolvedor de Software",
+      "descricao": "",
+      "tipo": "academico",
+      "anoInicio": "2023",
+      "anoFim": "2023"
     }
   ],
   "portfolio": [
     {
-      "id": 1,
-      "link": "https://github.com/marcusvmotaa",
-      "image": "https://github.com/marcusvmota.png",
+      "id": 3,
+      "link": "https://picsum.photos/200",
+      "image": "https://picsum.photos/200",
       "title": "teste"
     }
   ]

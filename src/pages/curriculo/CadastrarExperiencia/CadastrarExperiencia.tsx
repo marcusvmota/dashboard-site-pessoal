@@ -81,6 +81,7 @@ const CadastrarExperiencia: React.FC = () => {
             <Input
               label="Ano Fim"
               name="anoFim"
+              // type="number"
               errors={errors.anoFim}
               touched={touched.anoFim}
             />
