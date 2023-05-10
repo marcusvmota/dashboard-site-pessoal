@@ -24,6 +24,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       setUser(JSON.parse(storedUser))
       setAuthenticated(true)
     }
+    setIsLoading(false)
   })
 
   const login = (loggedInUser: User) => {
