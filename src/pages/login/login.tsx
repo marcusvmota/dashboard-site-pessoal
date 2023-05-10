@@ -4,6 +4,7 @@ import styles from "./login.module.css"
 import Input from "../../components/forms/Input"
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
+import { login } from "../../services/authService"
 
 interface LoginValues {
   email: string
@@ -26,10 +27,12 @@ const Login = () => {
   const navigate = useNavigate()
   const onSubmit = async (values: LoginValues) => {
     try {
+      await login(values.email, values.password)
       navigate("/")
       console.log(values)
     } catch (error) {
       console.log(error)
+      alert("Usuário ou senha inválidos")
     }
   }
 
