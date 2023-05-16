@@ -12,6 +12,7 @@ import {
   getInformacoes,
 } from "../../../services/informacoesService"
 import InformacoesCard from "./InformacoesCard/InformacoesCard"
+import Button from "../../../components/commom/Button"
 
 const CadastrarInformacoes: React.FC = () => {
   const [informacoes, setInformacoes] = useState<Informacoes>({} as Informacoes)
@@ -74,7 +75,7 @@ const CadastrarInformacoes: React.FC = () => {
   return (
     <div className={styles.formWrapper}>
       <Formik
-        initialValues={informacoes}
+        initialValues={initialValues}
         enableReinitialize={true}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
@@ -111,9 +112,7 @@ const CadastrarInformacoes: React.FC = () => {
               touched={touched.resumo}
             />
 
-            <button type="submit" className={styles.button}>
-              Salvar
-            </button>
+            <Button type="submit">Salvar</Button>
           </Form>
         )}
       </Formik>
@@ -124,13 +123,9 @@ const CadastrarInformacoes: React.FC = () => {
         ) && (
           <div className={styles.cardContainer}>
             <InformacoesCard informacoes={informacoes} />
-            <button
-              type="button"
-              onClick={handleDelete}
-              className={`${styles.button} ${styles.deleteButton}`}
-            >
+            <Button onClick={handleDelete} red={true}>
               Deletar
-            </button>
+            </Button>
           </div>
         )}
     </div>

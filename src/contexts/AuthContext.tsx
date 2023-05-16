@@ -25,7 +25,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       setAuthenticated(true)
     }
     setIsLoading(false)
-  })
+  }, [])
 
   const login = (loggedInUser: User) => {
     setUser(loggedInUser)

@@ -32,6 +32,7 @@ const Select: React.FC<SelectProps> = ({
         name={name}
         className={`${styles.input} ${touched && errors && styles.error}`}
       >
+        <option value="">Selecione uma opção</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

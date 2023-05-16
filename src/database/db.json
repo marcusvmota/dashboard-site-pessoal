@@ -6,20 +6,19 @@
       "password": "teste123"
     }
   ],
-
   "informacoes": [
     {
       "id": 1,
       "foto": "https://github.com/marcusvmota.png",
       "nome": "Marcus Vinícius",
       "cargo": "Desenvolvedor de Software",
-      "resumo": "updateInformacoes"
+      "resumo": "teste"
     }
   ],
   "experiencias": [
     {
       "id": 1,
-      "titulo": "Desenvolvedor de Software",
+      "titulo": "Desenvolvedor de Softwaree",
       "descricao": "",
       "tipo": "profissional",
       "anoInicio": "2023",
@@ -35,7 +34,7 @@
     },
     {
       "id": 3,
-      "titulo": "Desenvolvedor de Software",
+      "titulo": "teste",
       "descricao": "",
       "tipo": "academico",
       "anoInicio": "2023",

@@ -12,6 +12,7 @@ import {
   createOrUpdateExperiencia,
 } from "../../../services/experienciaService"
 import { useLocation, useNavigate } from "react-router-dom"
+import Button from "../../../components/commom/Button"
 
 const CadastrarExperiencia: React.FC = () => {
   const navigate = useNavigate()
@@ -104,9 +105,7 @@ const CadastrarExperiencia: React.FC = () => {
               touched={touched.descricao}
             />
 
-            <button className={styles.button} type="submit">
-              Salvar
-            </button>
+            <Button type="submit">Salvar</Button>
           </Form>
         )}
       </Formik>
