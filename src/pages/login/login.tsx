@@ -1,6 +1,6 @@
 // import { Formik, Form } from "formik"
 import React from "react"
-import styles from "./login.module.css"
+import styles from "./Login.module.css"
 import Input from "../../components/forms/Input"
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
